@@ -1,0 +1,19 @@
+import queue # 파이썬 내부에 queue 모듈이 있다
+
+Q = queue.Queue(maxsize=30) # 큐가 만들어짐,
+S = queue.LifoQueue()  # 스택이 만들어짐,
+
+
+for v in range(1, 10):
+    Q.put(v) # 큐에서의 enque를 쓰는 것
+    S.put(v) # 스택에서의 push
+
+print('Queue :', end = '')
+for v in range(1, 10):
+    print(Q.get(), end = ' ') # 큐에서의 dequeue
+print()
+
+print('Stack :', end = '')
+for v in range(1, 10):
+    print(S.get(), end = ' ') # 스택에서의 pop,  파이썬 모듈에서 peek는 존재하지 않음
+print()
