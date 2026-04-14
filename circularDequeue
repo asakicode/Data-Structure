@@ -1,0 +1,60 @@
+from  CircularQueue import CircularQueue
+
+
+class CircularDeque(CircularQueue): # 원형 덱 구현하는 class , circularqueue 에서 가져오는 거니까 상속시켜서 사용하면 되겠지
+
+    def __init__(self, capacity = 10): # 생성자 만들어 줍니다
+        super().__init__(capacity) # 자식클래스가 부모클래스의 생성자 호출 하는 것, 내가 capacity를 10으로 지정했으므로 이것이 부모인 circularqueue에 넘어가서 capacity 가 10으로 변환
+        '''
+        self.capacity = capacity
+        self.queue = [None] * capacity
+        self.front = 0 # 첫 초기 상태
+        self.rear = 0  # rear는 마지막 부분 입니다
+'''
+    def addRear(self,e): # enqueue와 사실상 똑같음 , 그렇다면 circularqueue에서 가져와서 사용함
+        self.enqueue(e)
+
+    def addFront(self,e):
+        if not self.isFull():
+            self.queue[self.front] = e
+            self.front = (self.front -1 + self.capacity) % self.capacity
+        else:
+            print('overflow')
+
+    def addRear(self):
+        self.enqueue(e)
+
+    def deleteFront(self): # dequeue 와 동일함
+        return self.Dequeue()
+
+    def deleteRear(self):
+        if not self.isEmpty():
+            e = self.queue[self.rear]
+            self.rear = (self.rear -1 + self.capacity) % self.capacity
+            return e
+        else:
+            print('underflow')
+
+
+    def getFront(self): # peek 와 동일함
+        return self.peek()
+
+
+    def getRear(self):
+        if not self.isEmpty():
+            return self.queue[self.rear]
+        else:
+            print('underflow')
+
+
+if __name__ == '__main__':
+    import random
+
+    D =CircularDeque()
+    for i in range(4):
+        D.addFront(chr(random.randint(65,90)))
+    D.display()
+
+   for i in range(4):
+        D.addRear(chr(random.randint(65,90)))
+    D.display()
